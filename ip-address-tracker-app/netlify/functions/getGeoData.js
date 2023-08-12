@@ -1,6 +1,6 @@
 import axios from "axios";
 
-exports.handler = async function (event, context) {
+export const handler  = async function (event, context) {
   try {
     const ip = event.queryStringParameters.ip;
     const API_KEY = process.env.API_KEY; 
