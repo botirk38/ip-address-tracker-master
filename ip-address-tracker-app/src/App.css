@@ -1,0 +1,24 @@
+.App-bg-img {
+    background-image: url(./images/pattern-bg-desktop.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    height:40vh;
+}
+
+#map {
+    height: 60vh;
+    width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+    .App-bg-img {
+        height: 30vh;
+    }
+    #map {
+        height: 70vh;
+    }
+}
+
+
+
