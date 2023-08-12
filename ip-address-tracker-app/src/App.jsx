@@ -7,42 +7,29 @@ import { useState } from 'react';
 
 
 function App() {
-
     const [ipInput, setIpInput] = useState('');
     const [ipToSearch, setIpToSearch] = useState(null);
+
     const fetcher = (url) => fetch(url).then((res) => res.json());
-    const { data, error } = useSWR(ipToSearch ? `http://localhost:3001/getGeoData?ip=${ipInput}` : null, fetcher);
+    const { data, error } = useSWR(ipToSearch ? `/.netlify/functions/getGeoData?ip=${ipInput}` : null, fetcher);
 
 
-  
-      const handleClick = (e) => {
+    const handleClick = (e) => {
         e.preventDefault();
         setIpToSearch(ipInput);
-      };
-  
-      let ipAddress, location, timezone, isp, latitude, longitude;
+    };
 
-      if (data && !error) {
+    let ipAddress, location, timezone, isp, latitude, longitude;
+    if (data && !error) {
         ipAddress = data?.ip;
-        console.log(ipAddress);
         location = `${data?.location?.region ?? ''}, ${data?.location?.country ?? ''}`;
-        console.log(location);
         timezone = data?.location?.timezone;
-        console.log();
         isp = data?.isp;
-        latitude = data?.location?.lat; 
-        console.log(latitude);
+        latitude = data?.location?.lat;
         longitude = data?.location?.lng; // Accessing longitude
-        console.log(longitude);
-      }
-      
-      
-      
+    }
 
-    if (error) {
-        console.error(error);
-        return <div>Error fetching data</div>;
-     }
+
      
 
 
