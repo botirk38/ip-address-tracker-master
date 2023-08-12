@@ -1,6 +1,6 @@
-import axios from "axios";
+const axios = require("axios");
 
-export const handler  = async function (event, context) {
+exports.handler = async function (event, context) {
   try {
     const ip = event.queryStringParameters.ip;
     const API_KEY = process.env.API_KEY; 
@@ -17,5 +17,4 @@ export const handler  = async function (event, context) {
       body: `An error occurred: ${error.message}`, // Include the error message in the response
     };
   }
-  
-  }
+};
