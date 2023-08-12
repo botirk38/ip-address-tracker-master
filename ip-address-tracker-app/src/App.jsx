@@ -29,7 +29,10 @@ function App() {
         longitude = data?.location?.lng; // Accessing longitude
     }
 
-
+    if (error) {
+        console.error(error);
+        return <div>Error fetching data</div>;
+     }
      
 
 

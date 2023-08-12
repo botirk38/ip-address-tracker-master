@@ -1,9 +1,9 @@
-const axios = require('axios');
+import axios from "axios";
 
 exports.handler = async function (event, context) {
   try {
     const ip = event.queryStringParameters.ip;
-    const API_KEY = process.env.API_KEY; // Make sure to define this in your Netlify environment variables
+    const API_KEY = process.env.API_KEY; 
     const response = await axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=${API_KEY}&ipAddress=${ip}`);
     
     return {
@@ -11,9 +11,11 @@ exports.handler = async function (event, context) {
       body: JSON.stringify(response.data),
     };
   } catch (error) {
+    console.error(error); // Log the full error
     return {
       statusCode: 500,
-      body: 'An error occurred',
+      body: `An error occurred: ${error.message}`, // Include the error message in the response
     };
   }
-};
+  
+  }
